@@ -1,0 +1,14 @@
+.icon {
+    height: 25px;
+    width: 25px;
+}
+.newsletter-btn {
+    color: #FFFFFF;
+    background-color: #feaf39;
+    border: none;
+    border-radius: 5px;
+}
+
+h4 {
+    font-family: 'Ubuntu' sans-serif;
+}
