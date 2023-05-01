@@ -1,0 +1,15 @@
+.sign-up-link {
+    text-decoration: none;
+}
+
+.sign-in-btn {
+    border: none;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 50px #ccc;
+    padding: 15px 20px;
+}
+
+.icon {
+    height: 25px;
+    width: 25px;
+}
