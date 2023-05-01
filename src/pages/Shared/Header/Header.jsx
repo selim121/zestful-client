@@ -1,9 +1,9 @@
-import React from 'react';
 import logo from '../../../images/logo/logo.svg'
 import './Header.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -14,10 +14,10 @@ const Header = () => {
                     <Navbar.Toggle className='color-primary' aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link className='nav-link' href="/home">Home</Nav.Link>
-                            <Nav.Link className='nav-link' href="/blog">Blog</Nav.Link>
-                            <Nav.Link className='nav-link' href="/service">Service</Nav.Link>
-                            <Nav.Link className='nav-link' href="/about">About</Nav.Link>
+                            <Link className='nav-link' to="/">Home</Link>
+                            <Link className='nav-link' to="/blog">Blog</Link>
+                            <Link className='nav-link' to="/service">Service</Link>
+                            <Link className='nav-link' to="/about">About</Link>
                         </Nav>
                         <button className='signin-btn-bg ms-auto'>Sign In</button>
                     </Navbar.Collapse>
