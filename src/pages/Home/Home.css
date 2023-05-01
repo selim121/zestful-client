@@ -23,3 +23,23 @@
     padding: 17px 40px;
     font-weight: 700;
 }
+
+/*** Service ***/
+.service-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .1s;
+}
+
+.service-item:hover {
+    background: #fff4e5;
+    color: #feaf39;
+}
+
+.service-item * {
+    transition: .01s;
+}
+
+.service-icon {
+    height: 50px;
+    width: 50px;
+}
