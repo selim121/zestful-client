@@ -1,0 +1,25 @@
+.hero-header {
+    background: linear-gradient(rgba(104, 93, 49, 0.824), rgba(15, 23, 43, .9)), url(../../images/header/bg-hero.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-header img {
+    animation: imgRotate 50s linear infinite;
+}
+
+@keyframes imgRotate { 
+    100% { 
+        transform: rotate(360deg); 
+    } 
+}
+
+.signin-btn {
+    background-color: #feaf39;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 17px 40px;
+    font-weight: 700;
+}

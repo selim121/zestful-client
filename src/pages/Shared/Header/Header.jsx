@@ -9,9 +9,9 @@ const Header = () => {
 
     return (
         <>
-            <Navbar className='d-flex justify-content-between navbar-bg mb-5' expand="lg">
+            <Navbar className='d-flex justify-content-between navbar-bg' expand="lg">
                 <Container>
-                    <Navbar.Brand className='fs-1 fw-bold title color-primary' href="/"><img className='logo me-2' src={logo} alt="" /> Zestful</Navbar.Brand>
+                    <Navbar.Brand className='fs-1 fw-bold title color-primary' ><img className='logo me-2' src={logo} alt="" /> Zestful</Navbar.Brand>
                     <Navbar.Toggle className='color-primary' aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
