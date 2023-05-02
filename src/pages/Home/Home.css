@@ -43,3 +43,8 @@
     height: 50px;
     width: 50px;
 }
+
+/* about */
+.img-margin {
+    margin-top: 25% !important;
+}
