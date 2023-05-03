@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import signOutPhoto from '../../../images/logo/signout.svg';
-// import { getAuth, signOut } from "firebase/auth";
+
 
 const Header = () => {
 
@@ -21,24 +21,12 @@ const Header = () => {
         })
     }
 
-    // console.log(user.photoURL);
-
     const [activeKey, setActiveKey] = useState('home');
 
     const handleSelect = selectedKey => {
         setActiveKey(selectedKey);
     }
 
-    // const auth = getAuth();
-    // const handleSignsOut = () => {
-    //     signOut(auth)
-    //     .then(() => {
-
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     })
-    // }
 
     return (
         <>
@@ -47,7 +35,7 @@ const Header = () => {
                     <Navbar.Brand className='fs-1 fw-bold title color-primary' ><img className='logo me-2' src={logo} alt="" /> Zestful</Navbar.Brand>
                     <Navbar.Toggle className='color-primary' aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav activeKey={activeKey} className="ms-auto" onSelect={handleSelect}>
+                        <Nav activeKey={activeKey} className="mx-auto" onSelect={handleSelect}>
                             <Nav.Link as={Link} eventKey="home" to="/" className={activeKey === 'home' ? 'active active-nav-link' : 'nav-link'}>Home</Nav.Link>
                             <Nav.Link as={Link} eventKey="blog" to="/blog" className={activeKey === 'blog' ? 'active active-nav-link' : 'nav-link'}>Blog</Nav.Link>
                             <Nav.Link as={Link} eventKey="service" to="/service" className={activeKey === 'service' ? 'active active-nav-link' : 'nav-link'}>Service</Nav.Link>

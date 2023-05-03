@@ -8,6 +8,7 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import RecipesDetails from "../pages/RecipesDetails/RecipesDetails";
 import PrivateRoute from "./PrivateRoute";
+import RecipeInformation from "../pages/RecipeInformation/RecipeInformation";
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,12 @@ const router = createBrowserRouter([
             path: "chef/recipe-details/:id",
             element: <PrivateRoute>
                 <RecipesDetails></RecipesDetails>
+            </PrivateRoute>
+        },
+        {
+            path: "recipe-information/:id",
+            element: <PrivateRoute>
+                <RecipeInformation></RecipeInformation>
             </PrivateRoute>
         }
       ]

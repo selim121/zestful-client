@@ -43,6 +43,7 @@ const SignIn = () => {
         signInWithPopup(auth, googleProvider)
         .then(result => {
             const user = result.user;
+            navigate('/', { replace: true });
             console.log(user);
         })
         .catch(error => {
@@ -54,6 +55,7 @@ const SignIn = () => {
         signInWithPopup(auth, githubProvider)
         .then(result => {
             const loggedUser = result.user;
+            navigate('/', { replace: true });
             console.log(loggedUser);
         })
         .catch(error => {

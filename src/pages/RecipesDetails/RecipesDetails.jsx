@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './RecipesDetails.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -27,7 +28,6 @@ const RecipesDetails = () => {
     const btnHandle = event => {
         event.currentTarget.disabled = true;
         showToastSuccessMessage();
-        console.log('button clicked');
     };
 
     return (
@@ -44,7 +44,7 @@ const RecipesDetails = () => {
                                 <p className="text-semibold fs-5">Number of Recipes: <span className="color-primary">{num_of_recipes}</span></p>
                             </div>
                             <div className="d-flex justify-content-around">
-                                <button className="btn btn-square btn-warning card-btn text-white">View Recipe Details</button>
+                                <Link to={`/recipe-information/${recipe.id}`}><button className="btn btn-square btn-warning card-btn text-white">Recipe Information</button></Link>
                                 <button onClick={btnHandle} className="btn btn-square btn-warning card-btn text-white" >Add to Favorite</button>
                             </div>
                             <ToastContainer />
