@@ -14,8 +14,8 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Home = () => {
-    const {user} = useContext(AuthContext);
-    
+    const { user } = useContext(AuthContext);
+
     const [chefs, setChefs] = useState([]);
     useEffect(() => {
         fetch('https://zestful-server.vercel.app/allData')
@@ -46,6 +46,7 @@ const Home = () => {
             </div>
 
             <section className='container-xxl bg-white py-5'>
+                <p className='fs-1 fw-bold text-center mb-5'>Our <span className="color-primary">Services</span></p>
                 <div className="container">
                     <div className="row g-4">
                         <div className="col-lg-3 col-sm-6">
