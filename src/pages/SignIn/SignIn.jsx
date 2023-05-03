@@ -4,22 +4,34 @@ import signIn from '../../images/signin.svg';
 import google from '../../images/logo/google.svg';
 import github from '../../images/logo/github.svg';
 import './SignIn.css';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup, GithubAuthProvider } from 'firebase/auth';
 import app from '../../firebase/firebase.init';
 
 const SignIn = () => {
 
     const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const handleGoogleSignIn = () => {
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, googleProvider)
         .then(result => {
             const user = result.user;
             console.log(user);
         })
         .catch(error => {
             console.log('error', error.message);
+        })
+    }
+
+    const handleGithubSignIn = () => {
+        signInWithPopup(auth, githubProvider)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error => {
+            console.log(error);
         })
     }
 
@@ -65,7 +77,7 @@ const SignIn = () => {
                                 <Link onClick={handleGoogleSignIn} className="sign-in-btn color-primary"><img src={google} className="icon me-2" /> Sign in with Google</Link>
                             </div>
                             <div className="">
-                                <Link className="sign-in-btn color-primary"><img src={github} alt="" className="icon me-2" /> Sign in with GitHub</Link>
+                                <Link onClick={handleGithubSignIn} className="sign-in-btn color-primary"><img src={github} alt="" className="icon me-2" /> Sign in with GitHub</Link>
                             </div>
                         </div>
                     </div>

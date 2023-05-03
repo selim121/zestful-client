@@ -5,14 +5,15 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBpx6Hw1y7SKOgfB74psJd-wqMD5dsEFYQ",
-  authDomain: "zestful-d961f.firebaseapp.com",
-  projectId: "zestful-d961f",
-  storageBucket: "zestful-d961f.appspot.com",
-  messagingSenderId: "817225277702",
-  appId: "1:817225277702:web:b76a27c34c179f63bdbe87"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 export default app;
