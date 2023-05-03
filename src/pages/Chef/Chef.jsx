@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
 import './Chef.css'
 import { Link } from "react-router-dom";
+import LazyLoad from 'react-lazy-load';
 
 const Chef = ({ chef }) => {
-    
+
     return (
         <>
             <div className="col-lg-3 col-md-6">
                 <div className="team-item text-center rounded overflow-hidden">
                     <div className="rounded-circle overflow-hidden m-4">
-                        <img className="img-fluid" src={chef.chef_picture} alt="" />
+                        <LazyLoad height={162}>
+
+                            <img className="img-fluid" src={chef.chef_picture} alt="" />
+                        </LazyLoad>
                     </div>
                     <h4 className="mb-0">{chef.chef_name}</h4>
                     <div className="d-flex justify-content-around mt-2">
