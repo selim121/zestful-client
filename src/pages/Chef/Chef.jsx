@@ -1,23 +1,9 @@
 /* eslint-disable react/prop-types */
 import './Chef.css'
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
 const Chef = ({ chef }) => {
-    const showToastSuccessMessage = () => {
-        toast.success('Add to favorite successfully !', {
-            position: toast.POSITION.TOP_RIGHT
-        })
-    }
-
-    const btnHandle = event => {
-        event.currentTarget.disabled = true;
-        showToastSuccessMessage();
-        console.log('button clicked');
-    };
-
-    // console.log(chef);
+    
     return (
         <>
             <div className="col-lg-3 col-md-6">
@@ -32,9 +18,7 @@ const Chef = ({ chef }) => {
                     </div>
                     <p className="fw-semibold mt-2">Number of Recipes: <span className="color-primary">{chef.num_of_recipes}</span></p>
                     <div className="d-flex justify-content-center mt-3">
-                        <Link className="btn btn-square btn-warning card-btn mx-1 text-white" to={'/recipe-details'}>View Recipes</Link>
-                        <button onClick={btnHandle} className="btn btn-square btn-warning card-btn mx-1 text-white" >Add to Favorite</button>
-                        <ToastContainer />
+                        <Link className="btn btn-square btn-warning card-btn mx-1 text-white" to={`/chef/recipe-details/${chef.id}`}>View Recipes</Link>
                     </div>
                 </div>
             </div>
