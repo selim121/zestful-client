@@ -21,8 +21,6 @@ const Home = () => {
             .then(data => setChefs(data))
     }, [])
 
-    console.log(chefs);
-
 
     return (
         <>

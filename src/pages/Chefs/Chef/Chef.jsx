@@ -1,8 +1,14 @@
 import { Carousel } from "react-bootstrap";
 import './Chef.css'
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Chef = ({ chef }) => {
+    const btnHandle = event => {
+        event.currentTarget.disabled = true;
+        console.log('button clicked');
+      };
+    
     console.log(chef);
     return (
         <>
@@ -16,10 +22,10 @@ const Chef = ({ chef }) => {
                         <small className="fw-semibold">Experience: <span className="color-primary">{chef.years_of_experience}</span> <span className="fw-light">years</span></small>
                         <small className="fw-semibold">Likes: <span className="color-primary">{chef.likes}</span></small>
                     </div>
-                    <p className="fw-semibold">Number of Recipes: <span className="color-primary">{chef.num_of_recipes}</span></p>
+                    <p className="fw-semibold mt-2">Number of Recipes: <span className="color-primary">{chef.num_of_recipes}</span></p>
                     <div className="d-flex justify-content-center mt-3">
-                        <Link className="btn btn-square btn-warning mx-1 text-white">View Recipes</Link>
-                        <button className="btn btn-square btn-warning mx-1 text-white">Add to Favorite</button>
+                        <Link className="btn btn-square btn-warning card-btn mx-1 text-white">View Recipes</Link>
+                        <button onClick={btnHandle} className="btn btn-square btn-warning card-btn mx-1 text-white" >Add to Favorite</button>
                     </div>
                 </div>
                 {/* <Carousel>
