@@ -16,10 +16,12 @@ const Home = () => {
 
     const [chefs, setChefs] = useState([]);
     useEffect(() => {
-        fetch('https://zestful-server.vercel.app/data/allData.json')
+        fetch('https://zestful-server.vercel.app/allData')
             .then(res => res.json())
             .then(data => setChefs(data))
     }, [])
+
+    console.log(chefs);
 
 
     return (
@@ -135,6 +137,7 @@ const Home = () => {
             {/* Chef section  */}
 
             <section className='container-xxl py-5 bg-white'>
+                <p className='fs-1 fw-bold text-center mb-5'>Our <span className="color-primary">Master</span> Chefs</p>
                 <div className="row g-4">
                     {
                         chefs.map(chef => <Chef

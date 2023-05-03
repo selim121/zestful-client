@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import './Chef.css'
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -31,7 +32,7 @@ const Chef = ({ chef }) => {
                     </div>
                     <p className="fw-semibold mt-2">Number of Recipes: <span className="color-primary">{chef.num_of_recipes}</span></p>
                     <div className="d-flex justify-content-center mt-3">
-                        <Link className="btn btn-square btn-warning card-btn mx-1 text-white">View Recipes</Link>
+                        <Link className="btn btn-square btn-warning card-btn mx-1 text-white" to={'/recipe-details'}>View Recipes</Link>
                         <button onClick={btnHandle} className="btn btn-square btn-warning card-btn mx-1 text-white" >Add to Favorite</button>
                         <ToastContainer />
                     </div>
