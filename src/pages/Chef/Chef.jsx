@@ -1,14 +1,21 @@
-import { Carousel } from "react-bootstrap";
 import './Chef.css'
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Chef = ({ chef }) => {
+    const showToastSuccessMessage = () => {
+        toast.success('Add to favorite successfully !', {
+            position: toast.POSITION.TOP_RIGHT
+        })
+    }
+
     const btnHandle = event => {
         event.currentTarget.disabled = true;
+        showToastSuccessMessage();
         console.log('button clicked');
-      };
-    
+    };
+
     console.log(chef);
     return (
         <>
@@ -26,22 +33,9 @@ const Chef = ({ chef }) => {
                     <div className="d-flex justify-content-center mt-3">
                         <Link className="btn btn-square btn-warning card-btn mx-1 text-white">View Recipes</Link>
                         <button onClick={btnHandle} className="btn btn-square btn-warning card-btn mx-1 text-white" >Add to Favorite</button>
+                        <ToastContainer />
                     </div>
                 </div>
-                {/* <Carousel>
-                <div className="card">
-                    <img src={chef.chef_picture} className="card-img-top" />
-                    <div className="card-body">
-                        <h5 className="card-title">{chef.chef_name}</h5>
-                        <p className="card-text">{chef.years_of_experience}</p>
-                        <ul className="list-group list-group-flush">
-                            <li className="list-group-item">Recipes: {chef.num_of_recipes}</li>
-                            <li className="list-group-item">Total Likes: {chef.likes}</li>
-                        </ul>
-                        <a href="#" className="btn btn-primary">View Recipes</a>
-                    </div>
-                </div>
-            </Carousel> */}
             </div>
         </>
     );

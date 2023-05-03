@@ -9,7 +9,7 @@ import about2 from '../../images/about/about-2.jpg';
 import about3 from '../../images/about/about-3.jpg';
 import about4 from '../../images/about/about-4.jpg';
 import { Link } from 'react-router-dom';
-import Chef from '../Chefs/Chef/Chef';
+import Chef from '../Chef/Chef';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
