@@ -1,83 +1,56 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import signUp from '../../images/signup.svg';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import app from "../../firebase/firebase.init";
 import 'firebase/compat/storage';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../provider/AuthProvider";
 
 // import {getFirestore} from 'firebase/firestore';
 // import { useState } from "react";
 
 const SignUp = () => {
+
+    const {registerUser} = useContext(AuthContext);
+
     // const [photo, setPhoto] = useState(null);
 
     const navigate = useNavigate();
 
-    const handleSignUp = () => {
-        navigate('/sign-in', { replace: true });
-    }
+    
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
 
     const auth = getAuth(app);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setSuccess('');
-        const name = event.target.name.value;
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        // const photo = event.target.photo.files[0];
-        // console.log(event.target.photo);
-        // if(photo) {
-        //     const reader = new FileReader();
-        //     reader.onloadend = () => {
-        //         setPhoto(reader.result);
-        //     };
-        //     reader.readAsDataURL(photo);
+
+        // if(!/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$/.test(password)){
+        //     setError(`Must have at least one numeric character
+        //     Must have at least one lowercase character
+        //     Must have at least one uppercase character
+        //     Must have at least one special symbol among @#$%
+        //     Password length should be between 8 and 20`);
+        //     return;
         // }
 
-        // const storage = firebase.storage();
-        // const storageRef = storage.ref(`users/${email}/${photo.name}`);
-
-        // storageRef.put(photo)
-        // .then(() => {
-        //     storageRef.getDownloadURL()
-        //     .then(url => {
-        //         createUserWithEmailAndPassword(auth, email, password)
-        //         .then(result => {
-        //             const loggedUser = result.user;
-        //             const db = getFirestore(app);
-        //             db.collection('users').doc(loggedUser.uid).set({
-        //                 name: name,
-        //                 photoURL: url
-        //             })
-        //             .then(() => {
-        //                 console.log('User added successfully');
-        //             })
-        //             .catch(error => {
-        //                 console.log(error);
-        //             })
-        //         })
-        //     })
-        // })
-
-
-        createUserWithEmailAndPassword(auth, email, password)
+        registerUser(name, email, password)
             .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
+                navigate('/sign-in', { replace: true });
+                console.log(result.user);
                 setError('');
-                event.target.reset();
                 setSuccess('User has been created successfully');
-                handleSignUp();
             })
             .catch(error => {
-                console.log(error);
-                setError(error.message);
-                setSuccess('');
+                console.log(error.message);
             })
     }
 
@@ -96,15 +69,15 @@ const SignUp = () => {
                         <form className='w-50 mx-auto' onSubmit={handleSubmit}>
 
                             <label className="form-label">Profile name</label>
-                            <input name="name" type="text" className="form-control mb-3" placeholder='Your name' required />
+                            <input onChange={(e) => setName(e.target.value)} name="name" type="text" className="form-control mb-3" placeholder='Your name' required />
 
 
                             <label className="form-label">Email address</label>
-                            <input name="email" type="email" className="form-control mb-3" placeholder='Your email address' aria-describedby="emailHelp" required />
+                            <input onChange={(e) => setEmail(e.target.value)} name="email" type="email" className="form-control mb-3" placeholder='Your email address' aria-describedby="emailHelp" required />
 
 
                             <label className="form-label">Password</label>
-                            <input name="password" type="password" className="form-control mb-3" placeholder='Your password' required />
+                            <input onChange={(e) => setPassword(e.target.value)} name="password" type="password" className="form-control mb-3" placeholder='Your password' required />
 
 
                             <label className="form-label">Profile photo</label>

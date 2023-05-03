@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import { Link } from 'react-router-dom';
 import signIn from '../../images/signin.svg';
@@ -6,12 +7,37 @@ import github from '../../images/logo/github.svg';
 import './SignIn.css';
 import { GoogleAuthProvider, getAuth, signInWithPopup, GithubAuthProvider } from 'firebase/auth';
 import app from '../../firebase/firebase.init';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+
+    const {user, signInUser} = useContext(AuthContext);
+
+    const location = useLocation();
+    let navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
+
+    const handleSignIn = (event) => {
+        event.preventDefault();
+        if(email, password){
+            signInUser(email, password)
+            .then(result => {
+                navigate('/', { replace: true });
+                console.log(result.user);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+    }
 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, googleProvider)
@@ -48,13 +74,15 @@ const SignIn = () => {
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Email address</label>
-                                <input type="email" className="form-control" placeholder='Your email address' aria-describedby="emailHelp" />
+                                <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" placeholder='Your email address' aria-describedby="emailHelp" />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Password</label>
-                                <input type="password" className="form-control" placeholder='Your password' />
+                                <input onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder='Your password' />
                             </div>
-                            <button type="submit" className="btn btn-warning text-white fw-bold w-100">Sign In</button>
+
+                            <button onClick={handleSignIn} type="submit" className="btn btn-warning text-white fw-bold w-100">Sign In</button>
+                            
                             <div className="mt-2 text-end">
                                 <p>Don`t have an account? <Link className='color-primary sign-up-link' to='/sign-up'>Sign Up</Link></p>
                             </div>

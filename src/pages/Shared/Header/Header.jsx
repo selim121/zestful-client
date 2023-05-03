@@ -1,18 +1,44 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import logo from '../../../images/logo/logo.svg'
 import './Header.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
+import signOutPhoto from '../../../images/logo/signout.svg';
+// import { getAuth, signOut } from "firebase/auth";
 
 const Header = () => {
+
+    const {user, signOutHandle} = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        signOutHandle()
+        .then()
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+    // console.log(user.photoURL);
 
     const [activeKey, setActiveKey] = useState('home');
 
     const handleSelect = selectedKey => {
         setActiveKey(selectedKey);
     }
+
+    // const auth = getAuth();
+    // const handleSignsOut = () => {
+    //     signOut(auth)
+    //     .then(() => {
+
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     })
+    // }
 
     return (
         <>
@@ -27,7 +53,14 @@ const Header = () => {
                             <Nav.Link as={Link} eventKey="service" to="/service" className={activeKey === 'service' ? 'active active-nav-link' : 'nav-link'}>Service</Nav.Link>
                             <Nav.Link as={Link} eventKey="about" to="/about" className={activeKey === 'about' ? 'active active-nav-link' : 'nav-link'}>About</Nav.Link>
                         </Nav>
-                        <Link className='ms-auto' to="/sign-in"><button className='signin-btn-bg'>Sign In</button></Link>
+                        
+                        {
+                            user?.email ? <div className="d-flex align-items-center">
+                            <img className='profile me-2' src={user.photoURL && user.photoURL} alt="" />
+                            <Link onClick={handleSignOut} to={'/'}><img className='sign-out' src={signOutPhoto} alt="" /></Link>
+                        </div> : <Link className='ms-auto' to="/sign-in"><button className='signin-btn-bg'>Sign In</button></Link>
+                        }
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

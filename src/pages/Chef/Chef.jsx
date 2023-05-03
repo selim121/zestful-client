@@ -17,7 +17,7 @@ const Chef = ({ chef }) => {
         console.log('button clicked');
     };
 
-    console.log(chef);
+    // console.log(chef);
     return (
         <>
             <div className="col-lg-3 col-md-6">

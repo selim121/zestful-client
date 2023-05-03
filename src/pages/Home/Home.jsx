@@ -10,10 +10,12 @@ import about3 from '../../images/about/about-3.jpg';
 import about4 from '../../images/about/about-4.jpg';
 import { Link } from 'react-router-dom';
 import Chef from '../Chef/Chef';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Home = () => {
-
+    const {user} = useContext(AuthContext);
+    
     const [chefs, setChefs] = useState([]);
     useEffect(() => {
         fetch('https://zestful-server.vercel.app/allData')
@@ -21,7 +23,7 @@ const Home = () => {
             .then(data => setChefs(data))
     }, [])
 
-    console.log(chefs);
+    // console.log(chefs);
 
 
     return (
@@ -32,7 +34,9 @@ const Home = () => {
                         <div className="col-lg-6 text-center text-lg-start">
                             <h1 className="display-3 text-white animated slideInLeft">Enjoy Our<br />Delicious Meal</h1>
                             <p className="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                            <Link to="/sign-in"><button className='signin-btn'>Sign In</button></Link>
+                            {
+                                user?.email ? '' : <Link to="/sign-in"><button className='signin-btn'>Sign In</button></Link>
+                            }
                         </div>
                         <div className="col-lg-6 text-center text-lg-end overflow-hidden">
                             <img className="img-fluid" src={hero} alt="" />
