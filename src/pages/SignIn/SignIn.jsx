@@ -14,6 +14,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const SignIn = () => {
 
     const {user, signInUser} = useContext(AuthContext);
+    const [error, setError] = useState('');
 
     const location = useLocation();
     let navigate = useNavigate();
@@ -32,8 +33,10 @@ const SignIn = () => {
             .then(result => {
                 navigate('/', { replace: true });
                 console.log(result.user);
+                setError('');
             })
             .catch((error) => {
+                setError('Email or password invalid');
                 console.log(error);
             })
         }
@@ -83,10 +86,12 @@ const SignIn = () => {
                                 <input onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder='Your password' />
                             </div>
 
+                            <p className="text-danger">{error}</p>
+
                             <button onClick={handleSignIn} type="submit" className="btn btn-warning text-white fw-bold w-100">Sign In</button>
                             
                             <div className="mt-2 text-end">
-                                <p>Don`t have an account? <Link className='color-primary sign-up-link' to='/sign-up'>Sign Up</Link></p>
+                                <p>Don`t have an account? <Link className='color-primary sign-up-link' to='/sign-up'>Sign Up & Sign In</Link></p>
                             </div>
                             <div className="container my-3">
                                 <div className="row">

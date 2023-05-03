@@ -33,24 +33,20 @@ const SignUp = () => {
         event.preventDefault();
         setSuccess('');
 
-        // if(!/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$/.test(password)){
-        //     setError(`Must have at least one numeric character
-        //     Must have at least one lowercase character
-        //     Must have at least one uppercase character
-        //     Must have at least one special symbol among @#$%
-        //     Password length should be between 8 and 20`);
-        //     return;
-        // }
+        if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password)){
+            setError(`Minimum six characters, at least one letter and one number`);
+            return;
+        }
 
         registerUser(name, email, password)
             .then(result => {
-                navigate('/sign-in', { replace: true });
-                console.log(result.user);
                 setError('');
                 setSuccess('User has been created successfully');
+                navigate('/', { replace: true });
             })
             .catch(error => {
-                console.log(error.message);
+                setError('Something wrong, try again!');
+
             })
     }
 
@@ -66,7 +62,7 @@ const SignUp = () => {
                             <p className="fs-1 fw-bold m-0 color-primary">Zestful</p>
                             <p>Sign Up</p>
                         </div>
-                        <form className='w-50 mx-auto' onSubmit={handleSubmit}>
+                        <form className='w-50 mx-auto'>
 
                             <label className="form-label">Profile name</label>
                             <input onChange={(e) => setName(e.target.value)} name="name" type="text" className="form-control mb-3" placeholder='Your name' required />
@@ -82,12 +78,10 @@ const SignUp = () => {
 
                             <label className="form-label">Profile photo</label>
                             <input name="photo" type="file" className="form-control mb-3" placeholder='' required />
-                            {/* {photo && <img src={photo} alt="selected photo" />} */}
-
-                            <input type="submit" className="btn btn-warning text-white fw-bold w-100" value="Sign Up" />
+        
+                            <button onClick={handleSubmit} className="btn btn-warning text-white fw-bold w-100">Sign Up & Sign In</button>
                         </form>
                         <div className="mt-2 text-center">
-                            <p>Already have an account? <Link className='color-primary sign-up-link' to='/sign-in'>Sign In</Link></p>
                             <p className="text-danger my-2">{error}</p>
                             <p className="text-success my-2">{success}</p>
                         </div>
