@@ -11,14 +11,14 @@ import signOutPhoto from '../../../images/logo/signout.svg';
 
 const Header = () => {
 
-    const {user, signOutHandle} = useContext(AuthContext);
+    const { user, signOutHandle } = useContext(AuthContext);
 
     const handleSignOut = () => {
         signOutHandle()
-        .then()
-        .catch((error) => {
-            console.log(error);
-        })
+            .then()
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     const [activeKey, setActiveKey] = useState('home');
@@ -41,12 +41,15 @@ const Header = () => {
                             <Nav.Link as={Link} eventKey="service" to="/service" className={activeKey === 'service' ? 'active active-nav-link' : 'nav-link'}>Service</Nav.Link>
                             <Nav.Link as={Link} eventKey="about" to="/about" className={activeKey === 'about' ? 'active active-nav-link' : 'nav-link'}>About</Nav.Link>
                         </Nav>
-                        
+
                         {
                             user?.email ? <div className="d-flex align-items-center">
-                            <img className='profile me-2' src={user.photoURL && user.photoURL} alt="" />
-                            <Link onClick={handleSignOut} to={'/'}><img className='sign-out' src={signOutPhoto} alt="" /></Link>
-                        </div> : <Link className='ms-auto' to="/sign-in"><button className='signin-btn-bg'>Sign In</button></Link>
+                                <div className="profile">
+                                    <img className='prof me-2 profile-img' src={user.photoURL && user.photoURL} alt="" />
+                                    <p className="profile-name">{user.displayName}</p>
+                                </div>
+                                <Link onClick={handleSignOut} to={'/'}><img className='sign-out' src={signOutPhoto} alt="" /></Link>
+                            </div> : <Link className='ms-auto' to="/sign-in"><button className='signin-btn-bg'>Sign In</button></Link>
                         }
 
                     </Navbar.Collapse>

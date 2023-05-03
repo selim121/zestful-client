@@ -34,11 +34,28 @@
     color: #feaf39;
 }
 
-.profile {
+.prof {
     height: 40px;
     width: 40px;
     border-radius: 50%;
 }
+.profile {
+    position: relative;
+  }
+  
+  .profile-img:hover + .profile-name {
+    display: block;
+  }
+  
+  .profile-name {
+    display: none;
+    position: absolute;
+    top: 80%;
+    left: 60%;
+    transform: translateX(-50%);
+    color: #feaf39;
+  }
+  
 
 .sign-out {
     height: 25px;
