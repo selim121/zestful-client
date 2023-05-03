@@ -4,8 +4,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './RecipesDetails.css';
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+
 
 const RecipesDetails = () => {
     const [recipe, setRecipe] = useState([]);
@@ -19,16 +18,7 @@ const RecipesDetails = () => {
 
     const { bio, chef_name, chef_picture, likes, num_of_recipes, years_of_experience } = recipe;
 
-    const showToastSuccessMessage = () => {
-        toast.success('Add to favorite successfully !', {
-            position: toast.POSITION.TOP_RIGHT
-        })
-    }
-
-    const btnHandle = event => {
-        event.currentTarget.disabled = true;
-        showToastSuccessMessage();
-    };
+    
 
     return (
         <>
@@ -43,11 +33,10 @@ const RecipesDetails = () => {
                                 <p className="text-semibold fs-5">Likes: <span className="color-primary">{likes}</span></p>
                                 <p className="text-semibold fs-5">Number of Recipes: <span className="color-primary">{num_of_recipes}</span></p>
                             </div>
-                            <div className="d-flex justify-content-around">
+                            <div className="text-center">
                                 <Link to={`/recipe-information/${recipe.id}`}><button className="btn btn-square btn-warning card-btn text-white">Recipe Information</button></Link>
-                                <button onClick={btnHandle} className="btn btn-square btn-warning card-btn text-white" >Add to Favorite</button>
                             </div>
-                            <ToastContainer />
+                            
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-12 d-flex justify-content-center">

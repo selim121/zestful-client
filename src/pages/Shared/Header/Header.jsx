@@ -47,7 +47,7 @@ const Header = () => {
                             user?.email ? <div className="d-flex align-items-center">
                                 <div className="profile">
                                     <img className='prof me-2 profile-img' src={user.photoURL && user.photoURL} alt="" />
-                                    <p className="profile-name">{user.displayName}</p>
+                                    <p className="profile-name">{user.displayName && user.displayName}</p>
                                 </div>
                                 <Link onClick={handleSignOut} to={'/'}><img className='sign-out' src={signOutPhoto} alt="" /></Link>
                             </div> : <Link className='ms-auto' to="/sign-in"><button className='signin-btn-bg'>Sign In</button></Link>
