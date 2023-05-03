@@ -4,17 +4,26 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './RecipesDetails.css';
+import { ColorRing } from 'react-loader-spinner';
 
 
 const RecipesDetails = () => {
     const [recipe, setRecipe] = useState([]);
     const { id } = useParams();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch(`https://zestful-server.vercel.app/allData/${id}`)
-            .then((res) => res.json())
-            .then((data) => setRecipe(data.item))
+        async function fetchData() {
+            setLoading(true);
+            const res = await fetch(`https://zestful-server.vercel.app/allData/${id}`);
+            const data = await res.json();
+            setRecipe(data.item);
+            setLoading(false);
+        }
+        fetchData();
     }, []);
+
+    
 
     const { bio, chef_name, chef_picture, likes, num_of_recipes, years_of_experience } = recipe;
 
@@ -34,7 +43,15 @@ const RecipesDetails = () => {
                                 <p className="text-semibold fs-5">Number of Recipes: <span className="color-primary">{num_of_recipes}</span></p>
                             </div>
                             <div className="text-center">
-                                <Link to={`/recipe-information/${recipe.id}`}><button className="btn btn-square btn-warning card-btn text-white">Recipe Information</button></Link>
+                                <Link to={`${loading ? <ColorRing
+                            visible={true}
+                            height="80"
+                            width="80"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                        /> : `/recipe-information/${recipe.id}`}`}><button className="btn btn-square btn-warning card-btn text-white">Recipe Information</button></Link>
                             </div>
                             
                         </div>

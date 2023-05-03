@@ -13,17 +13,23 @@ import Chef from '../Chef/Chef';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import bookingImg from '../../images/booking.jpg';
+import { ColorRing } from 'react-loader-spinner';
 
 const Home = () => {
     const { user } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
 
     const [chefs, setChefs] = useState([]);
     useEffect(() => {
-        fetch('https://zestful-server.vercel.app/allData')
-            .then(res => res.json())
-            .then(data => setChefs(data))
+        async function fetchData() {
+            setLoading(true);
+            const res = await fetch(`https://zestful-server.vercel.app/allData/`);
+            const data = await res.json();
+            setChefs(data);
+            setLoading(false);
+        }
+        fetchData();
     }, [])
-
 
 
     return (
@@ -145,7 +151,15 @@ const Home = () => {
                 <p className='fs-1 fw-bold text-center mb-5'>Our <span className="color-primary">Master</span> Chefs</p>
                 <div className="row g-4">
                     {
-                        chefs.map(chef => <Chef
+                        loading ? <ColorRing
+                            visible={true}
+                            height="80"
+                            width="80"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                        /> : chefs.map(chef => <Chef
                             key={chef.id}
                             chef={chef}
                         ></Chef>)
