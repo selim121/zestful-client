@@ -3,6 +3,7 @@ import about1 from '../../images/about/about-1.jpg';
 import about2 from '../../images/about/about-2.jpg';
 import about3 from '../../images/about/about-3.jpg';
 import about4 from '../../images/about/about-4.jpg';
+import { Link } from 'react-router-dom';
 
 const About = () => {
     return (
@@ -51,7 +52,7 @@ const About = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button className="signin-btn text-white py-3 px-5 mt-2" >Read more</button>
+                            <Link to={'/booking'}><button className="signin-btn text-white py-3 px-5 mt-2" >Book a Table</button></Link>
                         </div>
                     </div>
                 </div>
