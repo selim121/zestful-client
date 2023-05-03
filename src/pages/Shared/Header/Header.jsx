@@ -39,6 +39,7 @@ const Header = () => {
                             <Nav.Link as={Link} eventKey="home" to="/" className={activeKey === 'home' ? 'active active-nav-link' : 'nav-link'}>Home</Nav.Link>
                             <Nav.Link as={Link} eventKey="blog" to="/blog" className={activeKey === 'blog' ? 'active active-nav-link' : 'nav-link'}>Blog</Nav.Link>
                             <Nav.Link as={Link} eventKey="service" to="/service" className={activeKey === 'service' ? 'active active-nav-link' : 'nav-link'}>Service</Nav.Link>
+                            <Nav.Link as={Link} eventKey="booking" to="/booking" className={activeKey === 'booking' ? 'active active-nav-link' : 'nav-link'}>Booking</Nav.Link>
                             <Nav.Link as={Link} eventKey="about" to="/about" className={activeKey === 'about' ? 'active active-nav-link' : 'nav-link'}>About</Nav.Link>
                         </Nav>
 

@@ -9,6 +9,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import RecipesDetails from "../pages/RecipesDetails/RecipesDetails";
 import PrivateRoute from "./PrivateRoute";
 import RecipeInformation from "../pages/RecipeInformation/RecipeInformation";
+import Booking from "../pages/Booking/Booking";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         {
             path: "sign-up",
             element: <SignUp></SignUp>
+        },
+        {
+            path: "booking",
+            element: <Booking></Booking>
         },
         {
             path: "chef/recipe-details/:id",
