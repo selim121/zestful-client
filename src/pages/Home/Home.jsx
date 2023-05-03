@@ -9,8 +9,21 @@ import about2 from '../../images/about/about-2.jpg';
 import about3 from '../../images/about/about-3.jpg';
 import about4 from '../../images/about/about-4.jpg';
 import { Link } from 'react-router-dom';
+import Chef from '../Chefs/Chef/Chef';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
+
+    const [chefs, setChefs] = useState([]);
+    useEffect(() => {
+        fetch('https://zestful-server.vercel.app/data/allData.json')
+            .then(res => res.json())
+            .then(data => setChefs(data))
+    }, [])
+
+    console.log(chefs);
+
+
     return (
         <>
             <div className="container-xxl py-2 bg-dark hero-header">
@@ -120,6 +133,19 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Chef section  */}
+
+            <section className='container-xxl py-5 bg-white'>
+                <div className="row g-4">
+                    {
+                        chefs.map(chef => <Chef
+                            key={chef.id}
+                            chef={chef}
+                        ></Chef>)
+                    }
+                </div>
+            </section>
         </>
     );
 };
